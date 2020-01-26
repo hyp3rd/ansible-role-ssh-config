@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: hyperd
   description: Ansible role allowing to configure, harden, and change the port of an ssh server
@@ -8,14 +9,14 @@ galaxy_info:
   min_ansible_version: 2.7
 
   platforms:
-  - name: Fedora
-    versions:
-    - all
-    - 25
-  - name: EL
-    versions:
-      - 6
-      - 7
+    - name: Fedora
+      versions:
+        - all
+        - 25
+    - name: EL
+      versions:
+        - 6
+        - 7
 
   galaxy_tags:
     - ssh

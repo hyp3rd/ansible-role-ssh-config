@@ -15,8 +15,8 @@
     connect_timeout: 5
     timeout: 10
   delegate_to: localhost
-  become: False
-  ignore_errors: True
+  become: false
+  ignore_errors: true
   register: ssh_config_default_port
 
 # If reachable, continue the following tasks with this port
@@ -31,7 +31,7 @@
 # If unreachable on port 22, check if we're able to reach
 # {{ inventory_hostname }} on {{ ansible_port }} provided by the inventory
 # from localhost
-- name: Check if we're using the inventory-provided SSH port ({{ ssh_config_port }})
+- name: Check if we're using the SSH port ({{ ssh_config_port }})
   wait_for:
     port: "{{ ssh_config_port }}"
     state: started
@@ -39,8 +39,8 @@
     connect_timeout: 5
     timeout: 10
   delegate_to: localhost
-  become: False
-  ignore_errors: True
+  become: false
+  ignore_errors: true
   register: ssh_config_service
   when:
     - ssh_config_default_port is defined
@@ -81,7 +81,7 @@
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
 
-- name: Setup selinux for alternate SSH port ("{{ configured_port }}") and restart SSHD
+- name: Setup selinux for SSH port ("{{ configured_port }}") and restart SSHD
   seport:
     ports: "{{ configured_port }}"
     proto: tcp

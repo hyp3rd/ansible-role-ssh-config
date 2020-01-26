@@ -25,10 +25,10 @@ provisioner:
   config_options:
     defaults:
       stdout_callback: yaml
-      bin_ansible_callbacks: True
+      bin_ansible_callbacks: true
   lint:
     name: ansible-lint
-    enabled: True
+    enabled: true
 verifier:
   name: testinfra
   lint:
