@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ansible-role-ssh-config"
+      include_role:
+        name: ansible-role-ssh-config

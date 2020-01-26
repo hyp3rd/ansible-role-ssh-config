@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+
+image: docker:git
+
+variables:
+  GIT_DEPTH: "1"
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/pip-cache"
+
+cache:
+  paths:
+    - "$CI_PROJECT_DIR/pip-cache"
+  key: "$CI_PROJECT_ID"
+
+services:
+  - docker:dind
+
+before_script:
+  - apk update && apk add --no-cache docker
+    python3-dev py3-pip docker gcc git curl build-base
+    autoconf automake py3-cryptography linux-headers
+    musl-dev libffi-dev openssl-dev openssh
+  - docker info
+  - python3 --version
+
+molecule:
+  stage: test
+  script:
+    - pip3 install --upgrade pip
+    - pip3 install ansible molecule[docker] docker
+    - docker ps -a
+    - ansible --version
+    - MOLECULE_NO_LOG="false" && molecule test
+
+# test:
+#   stage: test
+#   script:
+#     - pip3 install ansible molecule docker
+#     - ansible --version
+#     - chmod +x run-tests.bash
+#     - sh run-tests.bash -i -t -x python3

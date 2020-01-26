@@ -1,0 +1,37 @@
+---
+# defaults file for ssh-config
+
+ssh_config_port: 11260
+
+ssh_config_hostkey_List:
+  - HostKey /etc/ssh/ssh_host_rsa_key
+  - HostKey /etc/ssh/ssh_host_ecdsa_key
+  - HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Logging
+ssh_config_loglevel: VERBOSE
+ssh_config_logfacility: AUTHPRIV
+
+# Authentication
+ssh_config_permitrootlogin: "no"
+ssh_config_strictmodes: "yes"
+ssh_config_maxauthtries: 2
+ssh_config_maxsessions: 2
+
+ssh_config_permitemptypasswords: "no"
+ssh_config_passwordauthentication: "no"
+
+ssh_config_challengeresponseauthentication: "no"
+
+ssh_config_usepam: "yes"
+
+ssh_config_allowagentforwarding: "no"
+ssh_config_allowtcpforwarding: "no"
+
+ssh_config_x11forwarding: "no"
+
+ssh_config_tcpkeepalive: "no"
+ssh_config_compression: "no"
+ssh_config_clientalivecountmax: 2
+ssh_config_usedns: "no"
+ssh_config_permittunnel: "no"
